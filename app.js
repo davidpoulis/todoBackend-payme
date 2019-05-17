@@ -30,7 +30,8 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/todo')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public/todo')));
+
 app.use('/tasks', tasksRouter);
 app.use('/users', usersRouter);
 app.get('*', function(req, res) {
@@ -55,9 +56,6 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 3000;
-}
+
 app.listen(process.env.PORT || 3000, () => console.log(`app listening on port ${port} !`))
 module.exports = app;
