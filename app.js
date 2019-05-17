@@ -24,10 +24,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 
-app.set("port", process.env.PORT);
 
 
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/todo')
+mongoose.connect('mongodb+srv://david:<123>@cluster0-02ljv.mongodb.net/test?retryWrites=true')
 
 
 app.use(express.json());
