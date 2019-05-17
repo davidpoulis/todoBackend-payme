@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 var express = require('express')
 var tasksRouter = require('./routes/tasks');
 
@@ -24,12 +24,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 const url = 'mongodb://localhost:27017/todo';
-const connect = mongoose.connect(url,{
-  useMongoClient: true
-});
-connect.then((db)=>{
-  console.log('Connect Correctly to Server ')}
-  , err =>console.log(err));
+
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/todo')
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -58,6 +55,9 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-app.listen(3000, () => console.log(`app listening on port 3000 !`))
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+app.listen(process.env.PORT || 3000, () => console.log(`app listening on port ${port} !`))
 module.exports = app;
