@@ -7,20 +7,17 @@ var Task = new Schema({
         default : '',
         required:true
     },
-    body:{
+    subtitle:{
         type: String,
-        default: ''
-    },
-
-    done:{
-       type: Boolean,
-       default: false
-    },
-    author:{
-        type: String,
-        ref: 'User',
+        default: '',
         required:true
 
+    },
+
+    author:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required:true
     }
  
 },{timestamps: true});
