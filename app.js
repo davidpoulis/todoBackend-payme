@@ -27,7 +27,7 @@ app.set('view engine', 'jade');
 
 //'mongodb+srv://david:<123>@cluster0-02ljv.mongodb.net/test?retryWrites=true'
 
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/todo')
+mongoose.connect(process.env.MONGOLAB_TEAL_URI || 'mongodb://localhost:27017/todo')
 
 
 app.use(express.json());
